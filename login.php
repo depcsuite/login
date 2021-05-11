@@ -1,7 +1,24 @@
 <?php
+session_start();
 
+$claveEncriptada = '$2y$10$zqIdBOL2cw60q/Te1uSdu.godURopxlu.e/l7IqeiGBbmo7nmhOY6';
 
+if($_POST){
+  $usuario = trim($_POST["txtUsuario"]);
+  $clave = trim($_POST["txtClave"]);
 
+  //Si el usuario es admin y clave verifica admin123 contra el hash de claveEncriptada
+  if($usuario == "admin" && password_verify($clave, $claveEncriptada)) {
+      //redireccionar a index.php
+      $_SESSION["usuario"] = "Nelson Daniel";
+      header("Location: index.php");
+  } else {
+    //sino
+    //mostrar en pantalla un mensaje de "Credenciales incorrectas."
+    $msg = "Credenciales incorrectas";
+  }
+
+}
 
 ?>
 <!DOCTYPE html>
@@ -52,10 +69,10 @@
 					</div>
 				  <?php endif; ?>
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="txtUsuario" name="txtUsuario" aria-describedby="emailHelp" placeholder="Usuario" value="ntarche">
+                      <input type="text" class="form-control form-control-user" id="txtUsuario" name="txtUsuario" aria-describedby="emailHelp" placeholder="Usuario" value="">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="txtClave" name="txtClave" placeholder="Clave" value="admin123">
+                      <input type="password" class="form-control form-control-user" id="txtClave" name="txtClave" placeholder="Clave" value="">
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">

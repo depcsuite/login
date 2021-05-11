@@ -123,14 +123,7 @@ class Cliente {
     A.nombre,
     A.telefono,
     A.correo,
-    A.fecha_nac,
-    (SELECT GROUP_CONCAT('(', C.nombre, ') ', B.domicilio, ', ', D.nombre, ', ', E.nombre SEPARATOR '<br>') 
-        FROM domicilios B 
-        INNER JOIN tipo_domicilios C ON C.idtipo = B.fk_tipo
-        INNER JOIN localidades D ON D.idlocalidad = B.fk_idlocalidad
-        INNER JOIN provincias E ON E.idprovincia = D.fk_idprovincia
-        WHERE B.fk_idcliente = A.idcliente
-        ) as domicilio
+    A.fecha_nac
 	FROM
 	    clientes A
 	ORDER BY idcliente DESC";
@@ -152,6 +145,7 @@ class Cliente {
             }
             return $aClientes;
         }
+        $mysqli->close();
     }
 
 }
