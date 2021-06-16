@@ -1,15 +1,5 @@
 <?php
-session_start();
 
-if($_POST){
-  if(isset($_POST["btnCerrar"])){
-    //Destruir la session
-    session_destroy();
-
-    //Redireccionar al login
-    header("Location: login.php");
-  }
-}
 ?>
 
 <!DOCTYPE html>

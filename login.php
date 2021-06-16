@@ -1,24 +1,6 @@
 <?php
-session_start();
 
-$claveEncriptada = '$2y$10$zqIdBOL2cw60q/Te1uSdu.godURopxlu.e/l7IqeiGBbmo7nmhOY6';
 
-if($_POST){
-  $usuario = trim($_POST["txtUsuario"]);
-  $clave = trim($_POST["txtClave"]);
-
-  //Si el usuario es admin y clave verifica admin123 contra el hash de claveEncriptada
-  if($usuario == "admin" && password_verify($clave, $claveEncriptada)) {
-      //redireccionar a index.php
-      $_SESSION["usuario"] = "Nelson Daniel";
-      header("Location: index.php");
-  } else {
-    //sino
-    //mostrar en pantalla un mensaje de "Credenciales incorrectas."
-    $msg = "Credenciales incorrectas";
-  }
-
-}
 
 ?>
 <!DOCTYPE html>
